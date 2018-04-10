@@ -1,4 +1,4 @@
-# Single Stream Audio Skill (My Radio)
+# Single Stream Audio Skill (Ram Raksha)
 
 This skill demonstrates how to create a single stream audio skill.  Single stream skills are typically used by radio stations to provide a convenient and quick access to their live stream.
 
@@ -7,7 +7,7 @@ User interface is limited to Play and Stop use cases.
 ## Usage
 
 ```text
-Alexa, play my radio
+Alexa, play Bapus Ram Raksha
 
 Alexa, stop
 ```
@@ -60,82 +60,6 @@ $ (cd lambda/src && npm install)
 
    To learn more about Alexa App cards, see https://developer.amazon.com/docs/custom-skills/include-a-card-in-your-skills-response.html
 
-```javascript
-var audioData = {
-    card : {
-        title: 'My Radio',
-        subtitle: 'Less bla bla, more la la',
-        cardContent: "Visit our web site https://www.myradio.com",
-        image: {
-            largeImageUrl: 'https://s3-eu-west-1.amazonaws.com/alexa.maxi80.com/assets/alexa-artwork-1200.png',
-            smallImageUrl: 'https://s3-eu-west-1.amazonaws.com/alexa.maxi80.com/assets/alexa-artwork-720.png'
-        }
-    },
-    url: 'https://audio1.maxi80.com',
-    startJingle : 'https://s3.amazonaws.com/alexademo.ninja/maxi80/jingle.m4a',    
-};
-```
-
-3. ```./models/*.json```
-
-   Change the model defintion to replace the invocation name (it defaults to "my radio") and the sample phrases for each intent.  
-
-   Repeat the operation for each locale you are planning to support.
-
-4. ```./lambda/src/constants.js```
-
-
-```javascript
-module.exports = Object.freeze({
-    
-    //App-ID. TODO: set to your own Skill App ID from the developer portal.
-    //appId : 'amzn1.ask.skill.123',
-
-    // when true, the skill logs additional detail, including the full request received from Alexa
-    debug : true,
-
-    // when defined, it tries to read / write DynamoDB to save the last time Jingle was played for that user
-    // this allows to avoid to repeat the jingle at each invocation 
-    jingle : {
-        // the name of the dynamoDB table
-        databaseTable : "my_radio",
-
-        // the elasped time between two jingles for a customer (in seconds) 
-        playOnceEvery : 1 * 60 * 60 * 24 // 24 hours
-    }
-
-});
-```
-
-When playing a jingle before your stream, you can choose the name of the database table where the "last played" information will be stored.  If the table does not exist, the persistence code will silently fail and play the jingle at each invocation of the skill. 
-
-You can create the DynamoDB table with the following command:
-
-```bash
-aws dynamodb create-table --table-name my_radio --attribute-definitions AttributeName=userId,AttributeType=S --key-schema AttributeName=userId,KeyType=HASH --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5
-```
-
-To minimize latency, we recommend to create the DynamDB table in the same region as the Lambda function.
-
-When using DynamoDB, you also must ensure your Lambda function [execution role](http://docs.aws.amazon.com/lambda/latest/dg/intro-permission-model.html) will have permissions to read and write to the DynamoDB table.  Be sure [to add the following policy](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_manage_modify.html) to the Lambda function [execution role](http://docs.aws.amazon.com/lambda/latest/dg/intro-permission-model.html):
-
-```json
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "sid123",
-            "Effect": "Allow",
-            "Action": [
-                "dynamodb:PutItem",
-                "dynamodb:GetItem",
-                "dynamodb:UpdateItem"
-            ],
-            "Resource": "arn:aws:dynamodb:us-east-1:YOUR_ACCOUNT_ID:table/my_radio"
-        }
-    ]
-}
-```
 
 ### Local Tests
 
@@ -164,7 +88,7 @@ You can test your deployment by FIRST ENABLING the TEST switch on your skill in 
 Then
 
 ```bash
- $ ask simulate -l en-US -t "alexa, play my radio"
+ $ ask simulate -l en-US -t "alexa, play bapus ram raksha"
  
  ✓ Simulation created for simulation id: 4a7a9ed8-94b2-40c0-b3bd-fb63d9887fa7
 ◡ Waiting for simulation response{
@@ -189,8 +113,7 @@ $ ask api list-skills
     {
       "lastUpdated": "2017-10-08T08:06:34.835Z",
       "nameByLocale": {
-        "en-US": "My Radio",
-        "en-US": "My Radio"
+        "en-US": "Bapus Ram Raksha"
       },
       "skillId": "amzn1.ask.skill.123",
       "stage": "development"
@@ -222,5 +145,5 @@ See https://developer.amazon.com/docs/smapi/quick-start-alexa-skills-kit-command
 Then, just say :
 
 ```text
-Alexa, open my radio.
+Alexa, open Bapus Ram Raksha.
 ```
