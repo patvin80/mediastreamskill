@@ -1,0 +1,1 @@
+aws s3 sync ./audioassets s3://raagdaariaudio --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers

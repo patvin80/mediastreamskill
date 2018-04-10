@@ -1,0 +1,49 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "bapus ramraksha",
+      "intents": [
+        {
+          "name": "PlayAudio",
+          "samples": [
+            "play",
+            "start",
+            "play Bapus RamRaksha",
+            "play Bapus RamRaksha please",
+            "start Bapus RamRaksha",
+            "start Bapus RamRaksha please"
+          ]
+        },
+        {
+          "name": "AMAZON.PauseIntent"
+        },
+        {
+          "name": "AMAZON.ResumeIntent"
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": [
+            "help me please",
+            "help please",
+            "what should i do",
+            "what's next",
+            "how can I listen to Bapus RamRaksha",
+            "tell me how to play",
+            "tell me how to stop",
+            "tell me how to resume",
+            "how to stop"
+          ]
+        },
+        {
+          "name": "AMAZON.StopIntent"
+        },
+        {
+          "name": "AMAZON.CancelIntent"
+        },
+        {
+          "name": "AMAZON.StartOverIntent"
+        }
+      ]
+    }
+  }
+}
